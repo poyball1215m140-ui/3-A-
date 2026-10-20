@@ -3,7 +3,7 @@ if(!Uint8Array.prototype.toHex)Object.defineProperty(Uint8Array.prototype,'toHex
 if(!Uint8Array.prototype.toBase64)Object.defineProperty(Uint8Array.prototype,'toBase64',{value:function(){let binary='';for(let offset=0;offset<this.length;offset+=32768)binary+=String.fromCharCode(...this.subarray(offset,offset+32768));return btoa(binary);},writable:true,configurable:true});
 if(!Uint8Array.fromBase64)Object.defineProperty(Uint8Array,'fromBase64',{value:function(text){return Uint8Array.from(atob(text),character=>character.charCodeAt(0));},writable:true,configurable:true});
 
-import __embeddedPDFAssets from '../vendor/pdfjs/binary-assets.js';
+import __embeddedPDFAssets from './binary-assets.js';
 const __decodePDFBinary=encoded=>Uint8Array.from(atob(encoded),c=>c.charCodeAt(0));
 let __pdfLibraryPromise;
 class __EmbeddedPDFBinaryDataFactory {
@@ -16,15 +16,15 @@ class __EmbeddedPDFBinaryDataFactory {
 }
 async function __loadEmbeddedPDF(){
   if(!__pdfLibraryPromise)__pdfLibraryPromise=(async()=>{
-    const pdfjs=await import('../vendor/pdfjs/pdf.mjs');
-    pdfjs.GlobalWorkerOptions.workerSrc=new URL('../vendor/pdfjs/pdf.worker.mjs', import.meta.url).href;
+    const pdfjs=await import('./pdf.mjs');
+    pdfjs.GlobalWorkerOptions.workerSrc=new URL('./pdf.worker.mjs', import.meta.url).href;
     return pdfjs;
   })();
   return __pdfLibraryPromise;
 }
-import {importStudentCSV,extractCandidates,normalizeDate} from './modules/module-1240d87eb179.js';
-import {SELECTION_TYPES,universityKey,universitySearchText,matchesSearch,selectionTypeOf,selectionLabel,selectionSearchText,isGuideCompatible,applyChoiceEdit} from './modules/module-ed55150ae872.js';
-import {loadState,saveState,mergeOfficialSeed,putDocument,getDocument,deleteDocument,exportBackup,restoreBackup} from './modules/module-30e5fbcc335d.js';
+import {importStudentCSV,extractCandidates,normalizeDate} from './module-1240d87eb179.js';
+import {SELECTION_TYPES,universityKey,universitySearchText,matchesSearch,selectionTypeOf,selectionLabel,selectionSearchText,isGuideCompatible,applyChoiceEdit} from './module-ed55150ae872.js';
+import {loadState,saveState,mergeOfficialSeed,putDocument,getDocument,deleteDocument,exportBackup,restoreBackup} from './module-30e5fbcc335d.js';
 
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
