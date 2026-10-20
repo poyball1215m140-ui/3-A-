@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+backups/
+private-data/
+*.csv
+*.pdf
+*進路ノート_*.json
+.DS_Store
+Thumbs.db
